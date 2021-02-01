@@ -9,5 +9,11 @@ export default (state = defaultState, action) => {
 		newState.inputValue = action.value;
 		return newState;
 	}
+	if(action.type === 'add_todo_item') {
+		const newState = JSON.parse(JSON.stringify(state));//reducer cannot change state, need to deep copy a newState
+		newState.list.push(newState.inputValue);
+		newState.inputValue = '';
+		return newState;
+	}
 	return state;
 }
