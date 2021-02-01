@@ -15,5 +15,10 @@ export default (state = defaultState, action) => {
 		newState.inputValue = '';
 		return newState;
 	}
+	if(action.type === 'delete_todo_item') {
+		const newState = JSON.parse(JSON.stringify(state));//reducer cannot change state, need to deep copy a newState
+		newState.list.splice(action.index, 1);//delete the item based on the index
+		return newState;
+	}
 	return state;
 }
